@@ -5,7 +5,8 @@ WriteMakefile(
     'NAME'		=> 'Math-BigRat',
     'VERSION_FROM'	=> 'lib/Math/BigRat.pm', # finds $VERSION
     'PREREQ_PM'		=> {
-			   Math::BigFloat => 1.28,
+			   Math::BigInt => 1.56,
+			   Math::BigFloat => 1.30,
 			   }, # e.g., Module::Name => 1.1
     'LIBS'		=> [''], # e.g., '-lm'
     'DEFINE'		=> '', # e.g., '-DHAVE_SOMETHING'

@@ -36,6 +36,11 @@ Math::BigRat:
    (formerly almost all of the 1500 tests in bigfltrt.inc would fail. Now we
    fail "only" 868 of 2014 tests, and most of them since the test dies early.
  * added stubs for round, bfround, bround and certain others
+2002-03-19 v0.04 Tels
+ * 5/7+3/7 hung under "Math::BigInt upgrade =>" (forgot local upgrade = undef)
+ * better testsuite
+ * added & fixed isa()
+ * new() can handle Lite
 
 Please send me test-reports, your experiences with this and your ideas - I love
 to hear about my work!
