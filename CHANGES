@@ -7,6 +7,17 @@ Math::BigRat:
 
 2001-11-21 v0.01 Tels
  * first release
+2002-02-24 v0.02 Tels
+ * ripped out doc and replaced by something closer to the truth
+ * subclass of BigFloat w/ overload section
+ * uses d/n instead of x/y for denominator and nominator
+ * tests from Math::BigFloat with a test subclass warping the input/output
+ * added preliminary bmul(), badd(), bdiv() methods
+ * added binf(), bone(), bzero() and bnan()
+ * added _bzero(), _bone(), _bnan() and _binf() (bnan() etc inherited)
+ * dummy blog(), bceil(), floor(), bfac() and bpow() functions
+ * parse input as '0.1', '0.1/0.1', '1/10', '10' or '10/0.1'
+ * input as Math::BigInts or Math::BigFloats is okay
 
 Please send me test-reports, your experiences with this and your ideas - I love
 to hear about my work!

@@ -1,33 +1,44 @@
 #!/usr/bin/perl -w
 
-use strict;
 use Test;
+use strict;
 
-BEGIN 
+BEGIN
   {
   $| = 1;
-  chdir 't' if -d 't';
-  unshift @INC, '../lib'; # for running manually
-  plan tests => 3;
+  # to locate the testing files
+  my $location = $0; $location =~ s/bigratpm.t//i;
+  if ($ENV{PERL_CORE})
+    {
+    # testing with the core distribution
+    @INC = qw(../lib);
+    }
+  unshift @INC, '../lib';
+  if (-d 't')
+    {
+    chdir 't';
+    require File::Spec;
+    unshift @INC, File::Spec->catdir(File::Spec->updir, $location);
+    }
+  else
+    {
+    unshift @INC, $location;
+    }
+  print "# INC = @INC\n";
+
+  #plan tests => 1585;
+  plan tests => 1;
   }
 
-# testing of Math::BigRat
+#use Math::BigInt;
+#use Math::BigRat;
+use Math::BigRat::Test;		# test via this 
 
-use Math::BigRat;
+use vars qw ($class $try $x $y $f @args $ans $ans1 $ans1_str $setup $CL);
+$class = "Math::BigRat::Test";
+$CL = "Math::BigInt::Calc";
+ 
+ok (1,1);
 
-my ($x,$y,$z);
-
-$x = Math::BigRat->new(1234);
-ok ($x,1234);
-$x = Math::BigRat->new('1234/1');
-ok ($x,1234);
-$x = Math::BigRat->new('1234/2');
-ok ($x,617);
-
-#my $x = Math::BigRat->new('7/5'); $x *= '3/2'; $x -= '0.1';
-#ok ($x,'2');
-
-# done
-
-1;
-
+# does not work yet  
+#require 'bigfltpm.inc';	# all tests here for sharing

@@ -1,9 +1,14 @@
 CHANGES
+INSTALL
 README
 LICENSE
 MANIFEST
 NEW
 TODO
+BUGS
 Makefile.PL
 lib/Math/BigRat.pm
-t/bigratpm.t			# test it
+t/bigratpm.t			# test via BigFloat testsuite
+t/bigfltpm.inc			# BigFloat's testsuite
+t/bigrat.t			# test big rationales like 7/5
+t/Math/BigRat/Test.pm		# test class for BigFloat compatible output
