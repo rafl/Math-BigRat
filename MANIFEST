@@ -1,0 +1,9 @@
+CHANGES
+README
+LICENSE
+MANIFEST
+NEW
+TODO
+Makefile.PL
+lib/Math/BigRat.pm
+t/bigratpm.t			# test it
