@@ -12,10 +12,9 @@ use vars qw($VERSION @ISA $PACKAGE
             $accuracy $precision $round_mode $div_scale);
 
 @ISA = qw(Exporter Math::BigRat);
-
 $VERSION = 0.03;
 
-use overload; 		# inherit overload from BigInt
+use overload; 		# inherit overload from BigRat
 
 # Globals
 $accuracy = $precision = undef;
@@ -53,8 +52,9 @@ sub bstr
     }
 
   my $s = ''; $s = $x->{sign} if $x->{sign} ne '+';     # +3 vs 3
- 
-  my $output = $x->{_d}->copy()->bdiv($x->{_n});
+
+  return $s.$x->{_n} if $x->{_d}->is_one(); 
+  my $output = Math::BigFloat->new($x->{_n})->bdiv($x->{_d});
   return $s.$output->bstr();
   }
 
@@ -73,7 +73,8 @@ sub bsstr
 
   my $s = ''; $s = $x->{sign} if $x->{sign} ne '+';     # +3 vs 3
 
-  my $output = $x->{_d}->copy()->bdiv($x->{_n});
+  return $s.$x->{_n}->bsstr() if $x->{_d}->is_one(); 
+  my $output = Math::BigFloat->new($x->{_n})->bdiv($x->{_d});
   return $s.$output->bsstr();
   }
 

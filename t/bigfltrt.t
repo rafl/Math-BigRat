@@ -40,5 +40,5 @@ $CL = "Math::BigInt::Calc";
  
 ok (1,1);
 
-# does not work yet  
-#require 'bigfltpm.inc';	# all tests here for sharing
+# does not fully work yet  
+# require 'bigfltpm.inc';	# all tests here for sharing

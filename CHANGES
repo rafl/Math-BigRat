@@ -29,6 +29,13 @@ Math::BigRat:
  * bnorm() normalizes 0/x to 0/1
  * badd()/bsub()/bmul()/bdiv() handle +/-/NaN/inf/-inf sign properly
  * t/Math/BigRat/Test.pm: fixed bstr() and bsstr() to handle inf/NaN and signs
+2002-03-19 v0.04 Tels
+ * bcmp/bacmp/as_number/bfloor/bceil work now
+ * bsqrt() is better now
+ * t/Math/BigInt/Test.pm is fixed now and makes a much better figure
+   (formerly almost all of the 1500 tests in bigfltrt.inc would fail. Now we
+   fail "only" 868 of 2014 tests, and most of them since the test dies early.
+ * added stubs for round, bfround, bround and certain others
 
 Please send me test-reports, your experiences with this and your ideas - I love
 to hear about my work!

@@ -1,15 +1,12 @@
 
 Whats new in this version:
- * fixed bstr()/bsstr() for negative output and inf/NaN
- * _d/_n were accidentily swapped
- * added numerator()/denominator()/parts() and doc and tests
- * fixed is_one()
- # '1/ ' is as invalid as '1/'
- * badd/bsub/bmul: inf/NaN handling was wrong due to copy&paste (ha!) from bdiv
- * more extensive testsuite (about 400 tests)
- * bnorm() normalizes 0/x to 0/1
- * badd()/bsub()/bmul()/bdiv() handle +/-/NaN/inf/-inf sign properly
- * t/Math/BigRat/Test.pm: fixed bstr() and bsstr() to handle inf/NaN and signs
+
+* bcmp/bacmp/as_number/bfloor/bceil work now
+* bsqrt() is better now
+* t/Math/BigInt/Test.pm is fixed now and makes a much better figure
+  (formerly almost all of the 1500 tests in bigfltrt.inc would fail. Now we
+  fail "only" 868 of 2014 tests, and most of them since the test dies early.
+* added stubs for round, bfround, bround and certain others
 
 Please have arbitrarily big amounts of fun.
 

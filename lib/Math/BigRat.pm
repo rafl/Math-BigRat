@@ -21,7 +21,7 @@ use vars qw($VERSION @ISA $PACKAGE @EXPORT_OK $upgrade $downgrade
 @ISA = qw(Exporter Math::BigFloat);
 @EXPORT_OK = qw();
 
-$VERSION = '0.03';
+$VERSION = '0.04';
 
 use overload;				# inherit from Math::BigFloat
 
@@ -60,9 +60,10 @@ sub _new_from_float
   else
     {
     # something like Math::BigRat->new('10');
-    $self->{_n}->blsft($f->{_e},10); 			# 1 / 1 => 10/1
+    # 1 / 1 => 10/1
+    $self->{_n}->blsft($f->{_e},10) unless $f->{_e}->is_zero();	
     }
-  #print "$self->{_n} / $self->{_d}\n";
+#  print "float new $self->{_n} / $self->{_d}\n";
   $self;
   }
 
@@ -106,6 +107,13 @@ sub new
       
 #  print "is string\n";
 
+  if (!defined $n)
+    {
+    $self->{_n} = Math::BigInt->bzero();	# undef => 0
+    $self->{_d} = Math::BigInt->bone();
+    $self->{sign} = '+';
+    return $self->bnorm();
+    }
   # string input with / delimiter
   if ($n =~ /\s*\/\s*/)
     {
@@ -170,6 +178,7 @@ sub bstr
     return $s;
     }
 
+#  print "bstr $x->{sign} $x->{_n} $x->{_d}\n";
   my $s = ''; $s = $x->{sign} if $x->{sign} ne '+';	# +3 vs 3
 
   return $s.$x->{_n}->bstr() if $x->{_d}->is_one(); 
@@ -212,6 +221,7 @@ sub bnorm
     return $x;
     }
 
+#  print "$x->{_n} / $x->{_d} => ";
   # reduce other numbers
   my $gcd = $x->{_n}->bgcd($x->{_d});
 
@@ -220,6 +230,7 @@ sub bnorm
     $x->{_n}->bdiv($gcd);
     $x->{_d}->bdiv($gcd);
     }
+#  print "$x->{_n} / $x->{_d}\n";
   $x;
   }
 
@@ -493,17 +504,43 @@ sub parts
   return ($x->{_n}->copy(),$x->{_d}->copy());
   }
 
+sub length
+  {
+  return 0;
+  }
+
+sub digit
+  {
+  return 0;
+  }
+
 ##############################################################################
 # special calc routines
 
 sub bceil
   {
-  return Math::BigRat->bnan();
+  my ($self,$x) = ref($_[0]) ? (ref($_[0]),$_[0]) : objectify(1,@_);
+
+  return $x unless $x->{sign} =~ /^[+-]$/;
+  return $x if $x->{_d}->is_one();		# 22/1 => 22, 0/1 => 0
+
+  $x->{_n}->bdiv($x->{_d});			# 22/7 => 3/1
+  $x->{_d}->bone();
+  $x->{_n}->binc() if $x->{sign} eq '+';	# +22/7 => 4/1
+  $x;
   }
 
 sub bfloor
   {
-  return Math::BigRat->bnan();
+  my ($self,$x) = ref($_[0]) ? (ref($_[0]),$_[0]) : objectify(1,@_);
+
+  return $x unless $x->{sign} =~ /^[+-]$/;
+  return $x if $x->{_d}->is_one();		# 22/1 => 22, 0/1 => 0
+
+  $x->{_n}->bdiv($x->{_d});			# 22/7 => 3/1
+  $x->{_d}->bone();
+  $x->{_n}->binc() if $x->{sign} eq '-';	# -22/7 => -4/1
+  $x;
   }
 
 sub bfac
@@ -513,7 +550,38 @@ sub bfac
 
 sub bpow
   {
-  return Math::BigRat->bnan();
+  my ($self,$x,$y,@r) = objectify(2,@_);
+
+  return $x if $x->{sign} =~ /^[+-]inf$/;       # -inf/+inf ** x
+  return $x->bnan() if $x->{sign} eq $nan || $y->{sign} eq $nan;
+  return $x->bone(@r) if $y->is_zero();
+  return $x->round(@r) if $x->is_one() || $y->is_one();
+  if ($x->{sign} eq '-' && $x->{_n}->is_one() && $x->{_d}->is_one())
+    {
+    # if $x == -1 and odd/even y => +1/-1
+    return $y->is_odd() ? $x->round(@r) : $x->babs()->round(@r);
+    # my Casio FX-5500L has a bug here: -1 ** 2 is -1, but -1 * -1 is 1;
+    }
+  # 1 ** -y => 1 / (1 ** |y|)
+  # so do test for negative $y after above's clause
+ #  return $x->bnan() if $y->{sign} eq '-';
+  return $x->round(@r) if $x->is_zero();  # 0**y => 0 (if not y <= 0)
+
+  my $pow2 = $self->__one();
+  my $y1 = Math::BigInt->new($y->{_n}/$y->{_d})->babs();
+  my $two = Math::BigInt->new(2);
+  while (!$y1->is_one())
+    {
+    print "at $y1 (= $x)\n";
+    $pow2->bmul($x) if $y1->is_odd();
+    $y1->bdiv($two);
+    $x->bmul($x);
+    }
+  $x->bmul($pow2) unless $pow2->is_one();
+  # n ** -x => 1/n ** x
+  ($x->{_d},$x->{_n}) = ($x->{_n},$x->{_d}) if $y->{sign} eq '-'; 
+  $x;
+  #$x->round(@r);
   }
 
 sub blog
@@ -523,7 +591,109 @@ sub blog
 
 sub bsqrt
   {
-  return Math::BigRat->bnan();
+  my ($self,$x,$a,$p,$r) = ref($_[0]) ? (ref($_[0]),$_[0]) : objectify(1,@_);
+
+  return $x->bnan() if $x->{sign} ne '+';	# inf, NaN, -1 etc
+  $x->{_d}->bsqrt($a,$p,$r);
+  $x->{_n}->bsqrt($a,$p,$r);
+  $x->bnorm();
+  }
+
+sub blsft
+  {
+  my ($self,$x,$y,$b,$a,$p,$r) = objectify(3,@_);
+ 
+  $x->bmul( $b->copy()->bpow($y), $a,$p,$r);
+  $x;
+  }
+
+sub brsft
+  {
+  my ($self,$x,$y,$b,$a,$p,$r) = objectify(2,@_);
+
+  $x->bdiv( $b->copy()->bpow($y), $a,$p,$r);
+  $x;
+  }
+
+##############################################################################
+# round
+
+sub round
+  {
+  $_[0];
+  }
+
+sub bround
+  {
+  $_[0];
+  }
+
+sub bfround
+  {
+  $_[0];
+  }
+
+##############################################################################
+# comparing
+
+sub bcmp
+  {
+  my ($self,$x,$y) = objectify(2,@_);
+
+  if (($x->{sign} !~ /^[+-]$/) || ($y->{sign} !~ /^[+-]$/))
+    {
+    # handle +-inf and NaN
+    return undef if (($x->{sign} eq $nan) || ($y->{sign} eq $nan));
+    return 0 if $x->{sign} eq $y->{sign} && $x->{sign} =~ /^[+-]inf$/;
+    return +1 if $x->{sign} eq '+inf';
+    return -1 if $x->{sign} eq '-inf';
+    return -1 if $y->{sign} eq '+inf';
+    return +1;
+    }
+  # check sign for speed first
+  return 1 if $x->{sign} eq '+' && $y->{sign} eq '-';   # does also 0 <=> -y
+  return -1 if $x->{sign} eq '-' && $y->{sign} eq '+';  # does also -x <=> 0
+
+  # shortcut
+  my $xz = $x->{_n}->is_zero();
+  my $yz = $y->{_n}->is_zero();
+  return 0 if $xz && $yz;                               # 0 <=> 0
+  return -1 if $xz && $y->{sign} eq '+';                # 0 <=> +y
+  return 1 if $yz && $x->{sign} eq '+';                 # +x <=> 0
+ 
+  my $t = $x->{_n} * $y->{_d}; $t->{sign} = $x->{sign};
+  my $u = $y->{_n} * $x->{_d}; $u->{sign} = $y->{sign};
+  $t->bcmp($u);
+  }
+
+sub bacmp
+  {
+  my ($self,$x,$y) = objectify(2,@_);
+
+  if (($x->{sign} !~ /^[+-]$/) || ($y->{sign} !~ /^[+-]$/))
+    {
+    # handle +-inf and NaN
+    return undef if (($x->{sign} eq $nan) || ($y->{sign} eq $nan));
+    return 0 if $x->{sign} =~ /^[+-]inf$/ && $y->{sign} =~ /^[+-]inf$/;
+    return +1;  # inf is always bigger
+    }
+
+  my $t = $x->{_n} * $y->{_d};
+  my $u = $y->{_n} * $x->{_d};
+  $t->bacmp($u);
+  }
+
+##############################################################################
+# output conversation
+
+sub as_number
+  {
+  my ($self,$x) = ref($_[0]) ? (ref($_[0]),$_[0]) : objectify(1,@_);
+
+  return $x if $x->{sign} !~ /^[+-]$/;			# NaN, inf etc 
+  my $t = $x->{_n}->copy()->bdiv($x->{_d});		# 22/7 => 3
+  $t->{sign} = $x->{sign};
+  $t;
   }
 
 #sub import
@@ -531,7 +701,7 @@ sub bsqrt
 #  my $self = shift;
 #  Math::BigInt->import(@_);
 #  $self->SUPER::import(@_);                     # need it for subclasses
-#  #$self->export_to_level(1,$self,@_);           # need this ?
+#  #$self->export_to_level(1,$self,@_);          # need this ?
 #  }
 
 1;
