@@ -85,23 +85,23 @@ while (<DATA>)
         $try .= '$x <=> $y;';
       } elsif ($f eq "facmp") {
         $try .= '$x->bacmp($y);';
-      } elsif ($f eq "bpow") {
+      } elsif ($f eq "fpow") {
         $try .= '$x ** $y;';
-      } elsif ($f eq "badd") {
+      } elsif ($f eq "fadd") {
         $try .= '$x + $y;';
-      } elsif ($f eq "bsub") {
+      } elsif ($f eq "fsub") {
         $try .= '$x - $y;';
-      } elsif ($f eq "bmul") {
+      } elsif ($f eq "fmul") {
         $try .= '$x * $y;';
-      } elsif ($f eq "bdiv") {
+      } elsif ($f eq "fdiv") {
         $try .= "$setup; \$x / \$y;";
       } elsif ($f eq "fdiv-list") {
         $try .= "$setup; join(',',\$x->bdiv(\$y));";
-      } elsif ($f eq "brsft") {
+      } elsif ($f eq "frsft") {
         $try .= '$x >> $y;';
-      } elsif ($f eq "blsft") {
+      } elsif ($f eq "flsft") {
         $try .= '$x << $y;';
-      } elsif ($f eq "bmod") {
+      } elsif ($f eq "fmod") {
         $try .= '$x % $y;';
       } else { warn "Unknown op '$f'"; }
     }

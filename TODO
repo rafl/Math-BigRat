@@ -1,10 +1,10 @@
 See also various .pm files.
 
-Pretty much anything needs to be done. Like:
+* rounding needs a new definiton: rounding to nearest fraction (see Knuth and
+fixed-slash fractions)
+* numerical comparing is not done yet
 
-  * blog, bsqrt, bfac, 
-  * input like '1+1/3'
-  * rounding, upgrading ?
+Too much needs still to be done.
 
 Please send me test-reports, your experiences with this and your ideas - I love
 to hear about my work!

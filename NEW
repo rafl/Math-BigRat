@@ -1,15 +1,15 @@
 
 Whats new in this version:
- * ripped out doc and replaced by something closer to the truth
- * subclass of BigFloat w/ overload section
- * uses d/n instead of x/y for denominator and nominator
- * tests from Math::BigFloat with a test subclass warping the input/output
- * added preliminary bmul(), badd(), bdiv() methods
- * added binf(), bone(), bzero() and bnan()
- * added _bzero(), _bone(), _bnan() and _binf() (bnan() etc inherited)
- * dummy blog(), bceil(), floor(), bfac() and bpow() functions
- * parse input as '0.1', '0.1/0.1', '1/10', '10' or '10/0.1'
- * input as Math::BigInts or Math::BigFloats is okay
+ * fixed bstr()/bsstr() for negative output and inf/NaN
+ * _d/_n were accidentily swapped
+ * added numerator()/denominator()/parts() and doc and tests
+ * fixed is_one()
+ # '1/ ' is as invalid as '1/'
+ * badd/bsub/bmul: inf/NaN handling was wrong due to copy&paste (ha!) from bdiv
+ * more extensive testsuite (about 400 tests)
+ * bnorm() normalizes 0/x to 0/1
+ * badd()/bsub()/bmul()/bdiv() handle +/-/NaN/inf/-inf sign properly
+ * t/Math/BigRat/Test.pm: fixed bstr() and bsstr() to handle inf/NaN and signs
 
 Please have arbitrarily big amounts of fun.
 

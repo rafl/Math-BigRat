@@ -8,7 +8,7 @@ BEGIN
   $| = 1;
   chdir 't' if -d 't';
   unshift @INC, '../lib'; # for running manually
-  plan tests => 14;
+  plan tests => 20;
   }
 
 # testing of Math::BigRat
@@ -27,6 +27,12 @@ $x = Math::BigRat->new('0.1/10');	ok ($x,'1/100');
 $x = Math::BigRat->new('0.1/0.1');	ok ($x,'1');
 $x = Math::BigRat->new('1e2/10');	ok ($x,10);
 $x = Math::BigRat->new('1e2/1e1');	ok ($x,10);
+$x = Math::BigRat->new('1 / 3');	ok ($x,'1/3');
+$x = Math::BigRat->new('-1 / 3');	ok ($x,'-1/3');
+$x = Math::BigRat->new('NaN');		ok ($x,'NaN');
+$x = Math::BigRat->new('inf');		ok ($x,'inf');
+$x = Math::BigRat->new('-inf');		ok ($x,'-inf');
+$x = Math::BigRat->new('1/');		ok ($x,'NaN');
 
 $x = Math::BigRat->new('1/4'); $y = Math::BigRat->new('1/3');
 ok ($x + $y, '7/12');

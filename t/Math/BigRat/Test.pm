@@ -45,9 +45,17 @@ sub bstr
   my ($x) = @_;
 
   $x = $class->new($x) unless ref $x;
+
+  if ($x->{sign} !~ /^[+-]$/)           # inf, NaN etc
+    {
+    my $s = $x->{sign}; $s =~ s/^\+//;  # +inf => inf
+    return $s;
+    }
+
+  my $s = ''; $s = $x->{sign} if $x->{sign} ne '+';     # +3 vs 3
  
   my $output = $x->{_d}->copy()->bdiv($x->{_n});
-  return $output->bstr();
+  return $s.$output->bstr();
   }
 
 sub bsstr
@@ -55,10 +63,18 @@ sub bsstr
   # calculate a BigFloat compatible string output
   my ($x) = @_;
 
- $x = $class->new($x) unless ref $x;
+  $x = $class->new($x) unless ref $x;
+
+  if ($x->{sign} !~ /^[+-]$/)           # inf, NaN etc
+    {
+    my $s = $x->{sign}; $s =~ s/^\+//;  # +inf => inf
+    return $s;
+    }
+
+  my $s = ''; $s = $x->{sign} if $x->{sign} ne '+';     # +3 vs 3
 
   my $output = $x->{_d}->copy()->bdiv($x->{_n});
-  return $output->bsstr();
+  return $s.$output->bsstr();
   }
 
 1;

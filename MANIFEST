@@ -8,7 +8,9 @@ TODO
 BUGS
 Makefile.PL
 lib/Math/BigRat.pm
-t/bigratpm.t			# test via BigFloat testsuite
+t/bigratpm.t			# native BigRat testsuite
+t/bigratpm.inc			# actual BigRat tests
 t/bigfltpm.inc			# BigFloat's testsuite
+t/bigfltrt.t			# run BigRat through BigFloat's testsuite
 t/bigrat.t			# test big rationales like 7/5
 t/Math/BigRat/Test.pm		# test class for BigFloat compatible output
