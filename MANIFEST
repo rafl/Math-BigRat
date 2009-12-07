@@ -8,6 +8,7 @@ TODO
 BUGS
 Makefile.PL
 lib/Math/BigRat.pm
+t/big_ap.t			# do Big(Float|Int)'s A/P interfere w/ Rat?
 t/bigratpm.t			# native BigRat testsuite
 t/bigratpm.inc			# actual BigRat tests
 t/bigfltpm.inc			# BigFloat's testsuite

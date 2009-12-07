@@ -75,6 +75,13 @@ Math::BigRat:
 2002-08-13 v0.08 Tels
  * bsstr() returned positive result for negative numbers - Oups!
  * added a numify() so that $array[Math::BigRat->new('17/8')] works
+2002-08-14 v0.09 Tels
+ * documentation was lacking a proper description, METHODS missing etc
+ * setting accuracy/precision in BigFloat/BigInt interfered with BigRat
+ * new testcases for the A/P fix in t/big_ap.t
+ * speedup: apply the same trick to avoid calls to objectify() like in BigInt
+ * speedup: badd()/bsub() did needless gcd(), copy() and bdiv()
+ * speedup: workaround for 'x.y.z'-valid bug in BigFloat no longer neccessary
 
 Please send me test-reports, your experiences with this and your ideas - I love
 to hear about my work!

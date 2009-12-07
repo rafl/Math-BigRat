@@ -8,7 +8,7 @@ BEGIN
   $| = 1;
   chdir 't' if -d 't';
   unshift @INC, '../lib'; # for running manually
-  plan tests => 148;
+  plan tests => 151;
   }
 
 # testing of Math::BigRat
@@ -164,6 +164,12 @@ $x = $cr->new('144/9')->bsqrt();	ok ($x,'4');
 # bpow
 
 $x = $cr->new('2/1');  $z = $x->bpow('3/1'); ok ($x,'8');
+$x = $cr->new('1/2');  $z = $x->bpow('3/1'); ok ($x,'1/8');
+$x = $cr->new('1/3');  $z = $x->bpow('4/1'); ok ($x,'1/81');
+$x = $cr->new('2/3');  $z = $x->bpow('4/1'); ok ($x,'16/81');
+
+# XXX todo:
+#$x = $cr->new('2/3');  $z = $x->bpow('5/3'); ok ($x,'32/81 ???');
 
 ##############################################################################
 # bfac
