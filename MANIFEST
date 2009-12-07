@@ -17,7 +17,6 @@ Makefile.PL
 MANIFEST
 MANIFEST.SKIP
 META.yml			# Module meta-data (added by MakeMaker)
-NEW
 README
 SIGNATURE
 t/big_ap.t			# do Big(Float|Int)'s A/P interfere w/ Rat?

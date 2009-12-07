@@ -1,4 +1,10 @@
 
+2007-04-17 v0.19 Tels 934 tests
+  * fix the check in bnorm() as it breaks under Pari
+  * require Math::BigInt v1.83
+  * exponent() makes a copy, so we can skip copy()
+  * fix the licence back to be "perl"
+
 2007-04-09 v0.18 Tels 934 tests
   * install_as_core() to work around Module::Install bug
   * remove PREREQ_FATAL since the toolchain is broken

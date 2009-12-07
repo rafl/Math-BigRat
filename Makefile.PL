@@ -11,11 +11,11 @@ name		'Math-BigRat';
 all_from	'lib/Math/BigRat.pm';
 
 requires	'perl'		=> "5.006002";
-requires	'Math::BigInt'	=> 1.82;
+requires	'Math::BigInt'	=> 1.83;
 
 build_requires	'Test::More'	=> 0.47;
 
-license		'gpl';
+license		'perl';
 
 author		'Tels <nospam-abuse@bloodgate.com>';
 

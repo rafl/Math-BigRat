@@ -15,14 +15,14 @@ BEGIN
 
 SKIP:
   {
-  skip("Test::Pod::Coverage 1.00 required for testing POD coverage", $tests)
+  skip("Test::Pod::Coverage 1.08 required for testing POD coverage", $tests)
     unless do {
-    eval "use Test::Pod::Coverage 1.00";
+    eval "use Test::Pod::Coverage 1.08";
     $@ ? 0 : 1;
     };
 
   # The first rule of isa() is: Do not talk about isa().
-  my $trustme = { trustme => [ qr/^isa\z/ ] };
+  my $trustme = { trustme => [ 'isa' ] };
 
   pod_coverage_ok( 'Math::BigRat', $trustme, "All our BigRats are covered" );
   }
