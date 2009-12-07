@@ -3,6 +3,7 @@
   and fixed-slash fractions)
 * bmod(), bmodpow(), bmodinv(), broot() not fully/properly implemented yet
 * bsqrt() is also not quite optimal yet
+* BigRat does not handle modify() yet or in a very incomplete manner
 
 Quite some stuff needs still to be done.
 

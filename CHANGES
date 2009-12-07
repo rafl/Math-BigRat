@@ -147,6 +147,17 @@ Math::BigRat:
    + sqrt() was not possible
    + new("2.3") did not work
    + new("12.3e-2") did not work
+2005-01-01 v0.14 Tels 924 tests
+ * require Math::BigInt v1.74
+ * streamline copy()
+ * inline is_zero() into bneg(), making it about 50% faster
+ * more tests for bneg()
+ * register callback to get notified of lib changes from Math::BigInt
+ * much simpler import() logic
+ * new() accepts input like new(Math::BigInt->new(123),Math::BigInt->new(7));
+ * doc: as_hex(), as_bin(), add note about as_pos(), as_neg() and as_int()
+ * numify() now deals with large N and D by using BigFloat (Thanx Hugo!)
+ * numify() lost the sign on negative integer values (Thanx Zefram!)
 
 Please send me test-reports, your experiences with this and your ideas - I love
 to hear about my work!
