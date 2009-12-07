@@ -1,8 +1,8 @@
 See also various .pm files.
 
-* rounding needs a new definiton: rounding to nearest fraction (see Knuth and
-fixed-slash fractions)
-* bmod() not properly implemented
+* rounding needs a new definiton: rounding to nearest fraction (see Knuth
+  and fixed-slash fractions)
+* bmod(), bmodpow(), bmodinv(), broot() not fully/properly implemented yet
 * bsqrt() is also not quite optimal yet
 
 Quite some stuff needs still to be done.

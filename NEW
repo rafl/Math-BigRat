@@ -1,27 +1,24 @@
-Please send me test-reports, your experiences with this and your ideas - I love
-to hear about my work!
 
-Tels <http://bloodgate.com/>
+What's new in Math::BigRat v0.11:
 
-What's new in v0.10:
+ * require Exporter vs. use it
+ * more tests for bacmp(), bnorm()
+ * fixed bug in bacmp() with ($x,[+-]inf)
+ * fixed bug in new("+-inf/X") (e.g. "-inf/5" resulted in "inf", not "-inf")
+ * delete _a and _p on _d and _n, reduces size of a BigRat object from
+   887 bytes to 767 bytes on a x86 32 bit system. This also makes some
+   operations slightly (single-digit percentages) faster.
+ * bacmp() is about 20% faster
+ * bcmp() is:
+   * about 4 times faster if sign($x) != sign($y)
+   * about 20% faster if sign($x) == sign($y)
+ * added broot(), bmodinv(), bmodpow(), blog() so that their equivalent of:
+    # perl -MMath::BigRat=:constant -le '$a = 2.0 ** 32; print $a->broot(4)'
+     Can't call method "copy" on an undefined value at BigFloat.pm line 1442.
+   works now for integer arguments and inf/NaN, at least.
+ * doc: rationales => rational numbers
 
- * fixed a bug in new() that failed with
-    Math::BigRat->new(Math::BigInt::Lite->new(123));
- * fixed new() to work better under
-    use Math::BigRat with => 'Math::BigInt::Lite';
- * add a test for "require Math::BigRat; $x = Math::BigRat->new(123); $x++;"
-   (it already works since we "use Math::BigFloat;"
- * as_number() forgot to disable $upgrade, so the result was a BigRat again
-   when run under -Mbigrat. Thanx to Ian Phillips.
- * require Carp; Carp::croak () instead of simple die()
- * implemented bmod() - Thanx Ian Phillips.
- * bsqrt() now returns a big rationale
- * tests for bmod(), as_number(), bsqrt() and some NaN cases
- * numify() is now much faster (38400 vs 720 tries/s on 2 Ghz AMD XP 2400+)
- * implement trapping of creation of NaN/inf/-inf
- * fix bsqrt(3/4) and similiar cases
-
-Please have arbitrarily big amounts of fun.
+Please have an arbitrarily big rat.
 
 Tels <http://bloodgate.com/perl>
 
