@@ -41,6 +41,19 @@ Math::BigRat:
  * better testsuite
  * added & fixed isa()
  * new() can handle Lite
+2002-03-26 v0.05 Tels
+ * various bugfixes
+   (local undef upgrade, Bigint handling, handling of string arguments)
+ * added isa()
+ * removed some old and wrong comments
+2002-05-23 v0.06 Tels
+ * added import() routine
+ * support for 'use Math::BigRat with => Foo::Bar;'
+ * support for 'use Math::BigRat lib => Foo::Bar;'
+ * bnorm() makes sure that both parts (n and d) are of class $MBI
+ * more documentation
+ * bugfix in new() with two arguments
+ * INSTALLDIRS => perl
 
 Please send me test-reports, your experiences with this and your ideas - I love
 to hear about my work!
