@@ -1,5 +1,5 @@
 This file contains message digests of all files listed in MANIFEST,
-signed via the Module::Signature module, version 0.36.
+signed via the Module::Signature module, version 0.38.
 
 To verify the content in this distribution, first make sure you have
 Module::Signature installed, then type:
@@ -14,21 +14,21 @@ not run its Makefile.PL or Build.PL.
 -----BEGIN PGP SIGNED MESSAGE-----
 
 SHA1 8ae0ffb28976cd777c92df4ee3bb1a3bceecf4de BUGS
-SHA1 08d4404eb1c3b96e87bd24b3813ec43bba69197d CHANGES
+SHA1 2c1835d0972c9ee21c7990303915f3ce6078491f CHANGES
 SHA1 45554f2da419f19f59014dab3489f34a45072279 INSTALL
 SHA1 d6a6c30ee6d9ba6b9afab8bbf6a25e1b23c744e0 LICENSE
 SHA1 c6fe5b7172237e24baaecc4615f1141aa8e1c00c MANIFEST
-SHA1 32ad1bba805c538bca70fb330aa129106bfb46b3 META.yml
-SHA1 3b349302fd0506849d13f3d6b2d977d61e04424a Makefile.PL
-SHA1 ea4ed16bcc53a6eac4e8d01a83e4867acf5a63ab NEW
+SHA1 678dce7f489e761b209a76483f3cd4141dd4ea9c META.yml
+SHA1 efcf257b05a0d2a93d4b4b28eb1b30b0d8e48446 Makefile.PL
+SHA1 d48ec546559999cf86e17ce2d6b96c5f111bcf31 NEW
 SHA1 e4ce2ac6577dd4f9c1bd869fe79b575f56afa578 README
-SHA1 3a0d25829934aa02a98086dd2d510671680dcd76 TODO
-SHA1 8677bc1dfe56a81865a3dd1b316f8c79563d5e94 lib/Math/BigRat.pm
-SHA1 eafda769807ae429e69a5e3d6d750a1643740ea2 t/Math/BigRat/Test.pm
+SHA1 a956c5ada0937663139269632d7c2f3398b5ca8f TODO
+SHA1 8296070d1c0cb92e2f064ed56cc537ac17c36b16 lib/Math/BigRat.pm
+SHA1 10a4e077d8b5c267fdde22be32619d9d23bded3b t/Math/BigRat/Test.pm
 SHA1 26863082c9bd978f862a3c0f45ab3380333c566b t/big_ap.t
-SHA1 180be7f02723340ea0a5e389fb011875b8b8e879 t/bigfltpm.inc
-SHA1 1c6e7dfaa0869082af29b1206f1370a2daf14941 t/bigfltrt.t
-SHA1 2bbb84cfb53daf792b7456161b1163f33808e505 t/bigrat.t
+SHA1 ac4cf26e869179307a83ba76d40de40b0eeb0f4d t/bigfltpm.inc
+SHA1 cd8da7ad4459ec3e68af80fd145bb8c90bf9a8ea t/bigfltrt.t
+SHA1 dfda4c088c88ea176e806ea8c7fb42c888790575 t/bigrat.t
 SHA1 73dccf8b6564e9db6c172efdbb4b7a1efed35b28 t/bigratpm.inc
 SHA1 6ad8cd45b7a11b1612800a7c18c0317187ff237e t/bigratpm.t
 SHA1 f30f3c73c64e83ea24fa17cee9a05e3f2a560f2e t/bigratup.t
@@ -38,11 +38,11 @@ SHA1 ab00cdfe98f95fd5434e95fe8a86a013b3ad773f t/trap.t
 Version: GnuPG v1.2.2-rc1-SuSE (GNU/Linux)
 Comment: When cryptography is outlawed, bayl bhgynjf jvyy unir cevinpl.
 
-iQEVAwUBP/w+QHcLPEOTuEwVAQH34gf7BnHCgdn9fu1+GmnLdWRpRRr6iAdKXyI8
-gsK1zjjGjZ0TJFkFl3ir9hRFe4mNukxw74IT5ACA3f6giKDuEGCy+jbXleFH6zCA
-pon7R/gOf3fiv7jULvvNfGQDYEEC9peadceg5PQYvbU0/BNPtSt58sqcEkJepwHQ
-fojFwMeXTK+yrBT8UBL70ACaN1BMgRgSgA0vBUbC7UPgiYegc/qb+oBlsSsb0yp5
-k3BhCNmxzdKiU4yrG1ynXCCUG8U7FfwNiGm2eBoFqIcCsKgGHGTylKkcSQFKdX8p
-nbLV4+fFwXRUvZJab+xxYAo+lgsWyduicue7nZqRyfHdUq93bcpJvA==
-=VEi9
+iQEVAwUBQFHjoHcLPEOTuEwVAQGXCQf+J/aElBI2ddU68MUW6WrmZlK8t+Gz5a5Q
+Lr/KEzEcr8v3HeoHE8cHP8yJz7Ge4c71I1uafNfSlcXLd5oGKGPanizd3bTzESun
+AT8A+gOKyHFNE1TBM9I2DrT+Z76E4JKaZCprr4ELcWoFxszvuAraPLm9gS5GywmI
+Ha5uPfzGI3sLftVdaJ33uxQzVyoB/ASulCtPUHh/xCG8JXzl2u76uakBcwyaRZNI
+OGozKdc9cqDBWlwMeCQLmgtWkSnHNmeA7g77YT18tFAkooE3mqLA8AK7XgnIubhV
+YIv2p9UkTUixTO4YY5Asx5GPxbXNk6H57nWUG9lhUEPGf1Z887JMrw==
+=mKFf
 -----END PGP SIGNATURE-----

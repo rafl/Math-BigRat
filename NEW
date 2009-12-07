@@ -1,22 +1,14 @@
 
-What's new in Math::BigRat v0.11:
-
- * require Exporter vs. use it
- * more tests for bacmp(), bnorm()
- * fixed bug in bacmp() with ($x,[+-]inf)
- * fixed bug in new("+-inf/X") (e.g. "-inf/5" resulted in "inf", not "-inf")
- * delete _a and _p on _d and _n, reduces size of a BigRat object from
-   887 bytes to 767 bytes on a x86 32 bit system. This also makes some
-   operations slightly (single-digit percentages) faster.
- * bacmp() is about 20% faster
- * bcmp() is:
-   * about 4 times faster if sign($x) != sign($y)
-   * about 20% faster if sign($x) == sign($y)
- * added broot(), bmodinv(), bmodpow(), blog() so that their equivalent of:
-    # perl -MMath::BigRat=:constant -le '$a = 2.0 ** 32; print $a->broot(4)'
-     Can't call method "copy" on an undefined value at BigFloat.pm line 1442.
-   works now for integer arguments and inf/NaN, at least.
- * doc: rationales => rational numbers
+What's new in Math::BigRat v0.12:
+ * fixed bug in is_one() (segfault under v.5.6.x)
+ * implemented length() and digit() for integers
+ * added AUTOLOAD to load fxxx() stubs (for BigFloat compatibility tests)
+ * $IMPORT for require and AUTOLOAD
+ * added as_bin(), as_hex() which work for integers, NaN, and +-inf
+ * implement broot() and blog() for non-integer numbers
+ * fixed blsft()/brsft() to work with undefined or scalar base
+ * added a copy() method to be independend from BigInt's copy()
+ * adopted to new internal format of Math::BigFloat v1.44 (from BigInt v1.70)
 
 Please have an arbitrarily big rat.
 
