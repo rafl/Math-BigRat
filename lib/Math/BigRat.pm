@@ -14,7 +14,7 @@
 package Math::BigRat;
 
 # anythig older is untested, and unlikely to work
-use 5.006002;
+use 5.006;
 use strict;
 
 use Math::BigFloat;
@@ -23,7 +23,7 @@ use vars qw($VERSION @ISA $upgrade $downgrade
 
 @ISA = qw(Math::BigFloat);
 
-$VERSION = '0.20';
+$VERSION = '0.21';
 
 use overload;			# inherit overload from Math::BigFloat
 
@@ -1409,7 +1409,8 @@ sub as_number
   {
   my ($self,$x) = ref($_[0]) ? (undef,$_[0]) : objectify(1,@_);
 
-  return Math::BigInt->new($x) if $x->{sign} !~ /^[+-]$/;	# NaN, inf etc
+  # NaN, inf etc
+  return Math::BigInt->new($x->{sign}) if $x->{sign} !~ /^[+-]$/;
  
   my $u = Math::BigInt->bzero();
   $u->{sign} = $x->{sign};
@@ -1931,6 +1932,10 @@ appropriate information.
 By passing a reference to a hash you may set the configuration values. This
 works only for values that a marked with a C<RW> above, anything else is
 read-only.
+
+=head2 objectify()
+
+This is an internal routine that turns scalars into objects.
 
 =head1 BUGS
 

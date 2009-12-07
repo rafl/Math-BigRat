@@ -1,4 +1,9 @@
 
+2007-09-16 v0.21 Tels 956 tests
+  * require Math::BigInt v1.88
+  * fix as_number() with Nan/inf (thanx zefram!)
+  * add POD stub for objectify() to make pod_cov.t happy
+
 2007-06-30 v0.20 Tels 956 tests
   * require Math::BigInt v1.87
   * add bnok() and bexp()
