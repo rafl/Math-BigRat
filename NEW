@@ -3,66 +3,23 @@ to hear about my work!
 
 Tels <http://bloodgate.com/>
 
-What's new in this version:
+What's new in v0.10:
 
- * fixed bug in bsstr() which always returned positive sign
- * added a numify method so that $array[Math::BigRat->new('17/8')] works now
- * applied the avoid-objectify() trick from Math::BigInt
-   => bmul/badd/bsub/bdiv are about 3% faster (for small numbers)
- * badd/bsub were performing a needless gcd()/copy() and bdiv()
-   => badd/bsub get between 50% and 100% faster (for small numbers)
- * Setting A or P in Math::BigInt or BigFloat interfered w/ Bigrat
- * added testcases for the A/P fixes
- * doc was quite incomplete and unfinished, added a lot methods to the list
-
- Benchmark done on a 1Ghz AMD TBird, Linux 2.4.16, Perl v5.8.0:
-
- v0.08:
-  5/6 * 3/6:  3s (3.12 usr + 0.01 sys =  3.13 CPU) @ 1408/s (n=4410)
-  5/7 * 3/6:  4s (3.17 usr + 0.03 sys =  3.20 CPU) @ 1377/s (n=4409)
-  5/6 / 3/6:  3s (3.27 usr + 0.02 sys =  3.29 CPU) @ 1182/s (n=3891)
-  5/7 / 3/6:  4s (3.30 usr + 0.01 sys =  3.31 CPU) @ 1495/s (n=4951)
-  5/6 + 3/6:  3s (3.19 usr + 0.00 sys =  3.19 CPU) @ 1165/s (n=3719)
-  5/7 + 3/6:  3s (3.04 usr + 0.01 sys =  3.05 CPU) @ 1189/s (n=3627)
-  5/6 - 3/6:  3s (3.21 usr + 0.00 sys =  3.21 CPU) @ 1088/s (n=3493)
-  5/7 - 3/6:  4s (3.23 usr + 0.01 sys =  3.24 CPU) @ 1147/s (n=3719)
-
- v0.09:
-  5/6 * 3/6:  3s (3.00 usr + 0.01 sys =  3.01 CPU) @ 1317/s (n=3967)
-  5/7 * 3/6:  3s (3.06 usr + 0.02 sys =  3.08 CPU) @ 1329/s (n=4095)
-  5/6 / 3/6:  4s (3.28 usr + 0.02 sys =  3.30 CPU) @ 1126/s (n=3719)
-  5/7 / 3/6:  4s (3.20 usr + 0.01 sys =  3.21 CPU) @ 1418/s (n=4552)
-  5/6 + 3/6:  3s (3.06 usr + 0.03 sys =  3.09 CPU) @  799/s (n=2470)
-  5/7 + 3/6:  3s (3.05 usr + 0.03 sys =  3.08 CPU) @  712/s (n=2195)
-  5/6 - 3/6:  3s (3.03 usr + 0.00 sys =  3.03 CPU) @  767/s (n=2325)
-  5/7 - 3/6:  4s (3.16 usr + 0.01 sys =  3.17 CPU) @  674/s (n=2138)
-
-   Benchmark done on 300 Mhz PIII
-                                                                       Factor
- v0.08:
-  badd_4/3_5/6: 4s (3.19 usr + 0.00 sys =  3.19 CPU) @ 245/s (n=782)
-  badd_4/3_5/7: 4s (3.19 usr + 0.00 sys =  3.19 CPU) @ 237/s (n=757)
-  bsub_4/3_5/6: 4s (3.18 usr + 0.00 sys =  3.18 CPU) @ 230/s (n=734)
-  bsub_4/3_5/7: 3s (3.05 usr + 0.00 sys =  3.05 CPU) @ 181/s (n=553)
-
-  bdiv_4/3_5/6: 4s (3.23 usr + 0.00 sys =  3.23 CPU) @ 327/s (n=1059)
-  bdiv_4/3_5/7: 4s (3.19 usr + 0.00 sys =  3.19 CPU) @ 411/s (n=1312)
-  bmul_4/3_5/6: 4s (3.23 usr + 0.00 sys =  3.23 CPU) @ 393/s (n=1270)
-  bmul_4/3_5/7: 4s (3.23 usr + 0.00 sys =  3.23 CPU) @ 457/s (n=1479)
-
- v0.09 after objectify trick:
-  badd_4/3_5/6: 4s (3.21 usr + 0.00 sys =  3.21 CPU) @ 254/s (n=817)   1.03
-  badd_4/3_5/7: 3s (3.24 usr + 0.00 sys =  3.24 CPU) @ 241/s (n=782)   1.02
-
- v0.09 after gcd() optimization in add/sub:
-  badd_4/3_5/6: 4s (3.22 usr + 0.00 sys =  3.22 CPU) @ 360/s (n=1161)  1.46
-  badd_4/3_5/7: 3s (3.13 usr + 0.00 sys =  3.13 CPU) @ 464/s (n=1453)  1.96
-  bsub_4/3_5/6: 4s (3.15 usr + 0.00 sys =  3.15 CPU) @ 333/s (n=1049)  1.44
-  bsub_4/3_5/7: 3s (3.11 usr + 0.00 sys =  3.11 CPU) @ 289/s (n=900)   1.60
-  bdiv_4/3_5/6: 4s (3.24 usr + 0.00 sys =  3.24 CPU) @ 340/s (n=1102)  1.03
-  bdiv_4/3_5/7: 4s (3.19 usr + 0.00 sys =  3.19 CPU) @ 426/s (n=1361)  1.04
-  bmul_4/3_5/6: 4s (3.23 usr + 0.00 sys =  3.23 CPU) @ 406/s (n=1312)  1.03
-  bmul_4/3_5/7: 4s (3.17 usr + 0.00 sys =  3.17 CPU) @ 481/s (n=1525)  1.05
+ * fixed a bug in new() that failed with
+    Math::BigRat->new(Math::BigInt::Lite->new(123));
+ * fixed new() to work better under
+    use Math::BigRat with => 'Math::BigInt::Lite';
+ * add a test for "require Math::BigRat; $x = Math::BigRat->new(123); $x++;"
+   (it already works since we "use Math::BigFloat;"
+ * as_number() forgot to disable $upgrade, so the result was a BigRat again
+   when run under -Mbigrat. Thanx to Ian Phillips.
+ * require Carp; Carp::croak () instead of simple die()
+ * implemented bmod() - Thanx Ian Phillips.
+ * bsqrt() now returns a big rationale
+ * tests for bmod(), as_number(), bsqrt() and some NaN cases
+ * numify() is now much faster (38400 vs 720 tries/s on 2 Ghz AMD XP 2400+)
+ * implement trapping of creation of NaN/inf/-inf
+ * fix bsqrt(3/4) and similiar cases
 
 Please have arbitrarily big amounts of fun.
 

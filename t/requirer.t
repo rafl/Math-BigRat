@@ -1,19 +1,21 @@
 #!/usr/bin/perl -w
 
-use Test;
+# check that simple requiring BigRat works
+
 use strict;
+use Test;
 
 BEGIN
   {
   $| = 1;
   # to locate the testing files
-  my $location = $0; $location =~ s/bigratpm.t//i;
+  my $location = $0; $location =~ s/requirer.t//i;
   if ($ENV{PERL_CORE})
     {
     # testing with the core distribution
-    @INC = qw(../lib);
+    @INC = qw(../t/lib);
     }
-  unshift @INC, '../lib';
+  unshift @INC, qw(../lib);     # to locate the modules
   if (-d 't')
     {
     chdir 't';
@@ -26,13 +28,14 @@ BEGIN
     }
   print "# INC = @INC\n";
 
-  plan tests => 534;
-  }
+  plan tests => 1;
+  } 
 
-use Math::BigRat;
+my ($x);
 
-use vars qw ($class $try $x $y $f @args $ans $ans1 $ans1_str $setup $CL);
-$class = "Math::BigRat";
-$CL = "Math::BigInt::Calc";
- 
-require 'bigratpm.inc';	# all tests here for sharing
+require Math::BigRat; $x = Math::BigRat->new(1); ++$x;
+
+ok ($x||'undef',2);
+
+# all tests done
+

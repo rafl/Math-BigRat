@@ -82,6 +82,30 @@ Math::BigRat:
  * speedup: apply the same trick to avoid calls to objectify() like in BigInt
  * speedup: badd()/bsub() did needless gcd(), copy() and bdiv()
  * speedup: workaround for 'x.y.z'-valid bug in BigFloat no longer neccessary
+2002-12-15 v0.10a Tels 700 tests (not released)
+ * as_number() forgot to disable $upgrade, resulting in BigRat again when
+   run under -Mbigrat -- thanx to Ian Phillips.
+ * fixed a bug in new() that failed with
+    Math::BigRat->new(Math::BigInt::Lite->new(123));
+ * fixed new() to work better under
+    use Math::BigRat with => 'Math::BigInt::Lite';
+ * add a test for "require Math::BigRat; $x = Math::BigRat->new(123); $x++;"
+   (it already works since we "use Math::BigFloat;"
+ * require Carp; Carp::croak () instead of simple die()
+ * implemented bmod() - Thanx Ian Phillips.
+ * bsqrt() now returns a big rationale - Ian again
+ * tests for bmod(), as_number(), bsqrt() and some NaN cases
+ * bfloor()/bceil() broke under use bigrat; due to missing upgrade-disabling
+2002-12-18 v0.10b Tels 729 tests (not released)
+ * support for :trap_nan/:trap_inf
+ * doc for config()
+ * implement trapping of creation of NaN/inf/-inf
+2003-07-06 v0.10 Tels 751 tests (released on 2003-08-13)
+ * one more die => croak conversion
+ * fix inf/NAN handling in new()
+ * fix bsqrt(3/4) and similiar cases failing with some obscure error, this was
+   a simple typo ({_n} vs. {_m}). Added tests for that.
+ * numify() is now much faster (38400 vs 720 tries/s on 2Ghz AMD XP2400+)
 
 Please send me test-reports, your experiences with this and your ideas - I love
 to hear about my work!

@@ -1,0 +1,47 @@
+This file contains message digests of all files listed in MANIFEST,
+signed via the Module::Signature module, version 0.22.
+
+To verify the content in this distribution, first make sure you have
+Module::Signature installed, then type:
+
+    % cpansign -v
+
+It would check each file's integrity, as well as the signature's
+validity.  If "==> Signature verified OK! <==" is not displayed,
+the distribution may already have been compromised, and you should
+not run its Makefile.PL or Build.PL.
+
+-----BEGIN PGP SIGNED MESSAGE-----
+
+SHA1 2bfbfb1dd3f22e75d2c1d120afd7e00ed4b2957a BUGS
+SHA1 0cb86f7c348048dc3a2ac33a58dc5ecce7a32983 CHANGES
+SHA1 73b8a4a4a62eac3bf20e79d5422449c6aa2c6f6f INSTALL
+SHA1 d6a6c30ee6d9ba6b9afab8bbf6a25e1b23c744e0 LICENSE
+SHA1 e65121ed28e39efecde6a260d9e553ff97846c33 MANIFEST
+SHA1 3b349302fd0506849d13f3d6b2d977d61e04424a Makefile.PL
+SHA1 cedd6c1cf0dc63bdba1a3117764cafa17a397436 NEW
+SHA1 6bd1c8c1ebadc9d1d40de4c607a5d56ac7c10415 README
+SHA1 c430d6a6321e9b48389001e36934d6aa845532da TODO
+SHA1 6deb2b2b828065b565391c26d0987690949fc50c lib/Math/BigRat.pm
+SHA1 eafda769807ae429e69a5e3d6d750a1643740ea2 t/Math/BigRat/Test.pm
+SHA1 26863082c9bd978f862a3c0f45ab3380333c566b t/big_ap.t
+SHA1 180be7f02723340ea0a5e389fb011875b8b8e879 t/bigfltpm.inc
+SHA1 1c6e7dfaa0869082af29b1206f1370a2daf14941 t/bigfltrt.t
+SHA1 37e7e417af3a0b5484665fda78c28c256e254cdb t/bigrat.t
+SHA1 5d6d4343d82da08ba2c7d58b31477269a2b0afbd t/bigratpm.inc
+SHA1 b7073e77e4df2a28d4949228e6ecd9621222cc54 t/bigratpm.t
+SHA1 f30f3c73c64e83ea24fa17cee9a05e3f2a560f2e t/bigratup.t
+SHA1 c0e79e2b2865a15fd3610a23cc1b24f61164dee7 t/requirer.t
+SHA1 ab00cdfe98f95fd5434e95fe8a86a013b3ad773f t/trap.t
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.2.2-rc1-SuSE (GNU/Linux)
+Comment: When cryptography is outlawed, bayl bhgynjf jvyy unir cevinpl.
+
+iQEVAwUBPzptBXcLPEOTuEwVAQEtEQf8DEyY8t3ePqCJd5sw5h80YEKwweSO4a75
+2yZ99Ar1rv7Y4V0pRj+c6tHrrux7MNliBgSB0gF2cH+fuWzb4TY9MVXgN0qGJHJG
+kwdPJ4tAeTs78XciisROQMK+oXnTlWxUFG6axdkB/LneBSG2mdFwFyCNPMBHggHO
+rDheg4X61FTfp4BheOrfGW4/riHTGyK/G6KnPz+bG0sgKh8PvMb6Celi2MPWCfCW
+wDFKZDiASp0OUnO3ft79/dg9ayyQ7iw7xJOpA17a4sYlVKjZkNJu8oy15EZNPy7/
+sHNu7vgzC38c1PzTZ5rkPXN2MXafr9hVmQl28rrjGALehiy5gmqvpA==
+=qOJT
+-----END PGP SIGNATURE-----
