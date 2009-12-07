@@ -1,46 +1,29 @@
-use ExtUtils::MakeMaker;
 
-sub MY::metafile {
-  package MY;
-  my $self = shift;
-  if (!eval { require YAML; 1 })
-  {
-    warn ("YAML not installed, cannot override metafile"); return $self->SUPER::metafile_target(@_);
-  };
+use strict;
 
-  require YAML::Node;
-  my $node = new YAML::Node {};
+# Load the Module::Install bundled in ./inc/
+use inc::Module::Install;
 
-  $node->{name}                 = $self->{DISTNAME};
-  $node->{author}               = 'Tels';
-  $node->{version}              = $self->{VERSION};
-  $node->{version_from}         = $self->{VERSION_FROM};
-  $node->{license}              = 'perl';
-  $node->{distribution_type}    = 'module';
-  $node->{generated_by}         = "$self->{DISTNAME} version $self->{VERSION}";
-  $node->{installdirs}          = 'perl';
-  $node->{requires}             = $self->{PREREQ_PM};
+# The name of your distribution
+name		'Math-BigRat';
 
-  my $dump = YAML::Dump( $node );
+# Get most of the details from the primary module
+all_from	'lib/Math/BigRat.pm';
 
-  $dump =~ s/^(.*)$/\t\$(NOECHO) \$(ECHO) "$1" >>META.yml/gm;
-  $dump =~ s/>>META\.yml/>META.yml/;
+requires	'perl'		=> "5.006002";
+requires	'Math::BigInt'	=> 1.79;
 
-  "metafile:\n$dump";
-  }
+build_requires	'Test::More'	=> 0.47;
 
+license		'gpl';
 
-WriteMakefile(
-    'NAME'		=> 'Math-BigRat',
-    'VERSION_FROM'	=> 'lib/Math/BigRat.pm',
-    'PREREQ_PM'		=> {
-			   Math::BigInt => 1.78,
-			   Math::BigFloat => 1.52,
-			   Test::Simple => 0.47,
-			   },
-    'INSTALLDIRS'	=> 'perl',
-    'LIBS'		=> [''],
-    'DEFINE'		=> '',
-    'INC'		=> '',
-    'PREREQ_FATAL'	=> 1,
-);
+author		'Tels <nospam-abuse@bloodgate.com>';
+
+# install this over the version in the Perl core
+makemaker_args INSTALLDIRS => 'perl';
+
+# We cannot work without our prerequisites
+makemaker_args PREREQ_FATAL => 1;
+
+# Generate the Makefile
+WriteAll;

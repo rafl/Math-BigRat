@@ -1,24 +1,34 @@
-CHANGES
-INSTALL
-README
-LICENSE
-MANIFEST
-NEW
-TODO
 BUGS
-SIGNATURE
-Makefile.PL
+Build.PL
+CHANGES
+inc/Module/Install.pm
+inc/Module/Install/Base.pm
+inc/Module/Install/Build.pm
+inc/Module/Install/Can.pm
+inc/Module/Install/Fetch.pm
+inc/Module/Install/Makefile.pm
+inc/Module/Install/Metadata.pm
+inc/Module/Install/Win32.pm
+inc/Module/Install/WriteAll.pm
+INSTALL
 lib/Math/BigRat.pm
+LICENSE
+Makefile.PL
+MANIFEST
+META.yml			# Module meta-data (added by MakeMaker)
+NEW
+README
+SIGNATURE
 t/big_ap.t			# do Big(Float|Int)'s A/P interfere w/ Rat?
-t/bigratpm.t			# native BigRat testsuite
-t/bigratpm.inc			# actual BigRat tests
 t/bigfltpm.inc			# BigFloat's testsuite
 t/bigfltrt.t			# run BigRat through BigFloat's testsuite
 t/bigrat.t			# test big rationales like 7/5
+t/bigratpm.inc			# actual BigRat tests
+t/bigratpm.t			# native BigRat testsuite
 t/bigratup.t			# test under $Math::BigInt::upgrade
+t/Math/BigRat/Test.pm		# test class for BigFloat compatible output
 t/pod.t				# test that the POD is wellformed
 t/pod_cov.t			# test that the POD covers all public functions
 t/requirer.t			# see if require works properly
 t/trap.t			# see if trap_nan and trap_inf work
-t/Math/BigRat/Test.pm		# test class for BigFloat compatible output
-META.yml			# Module meta-data (added by MakeMaker)
+TODO

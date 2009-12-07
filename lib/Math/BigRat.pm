@@ -13,7 +13,8 @@
 
 package Math::BigRat;
 
-require 5.005_03;
+# anythig older is untested, and unlikely to work
+use 5.006002;
 use strict;
 
 use Math::BigFloat;
@@ -22,7 +23,7 @@ use vars qw($VERSION @ISA $upgrade $downgrade
 
 @ISA = qw(Math::BigFloat);
 
-$VERSION = '0.16';
+$VERSION = '0.17';
 
 use overload;			# inherit overload from Math::BigFloat
 
@@ -228,13 +229,13 @@ sub new
       $self->{sign} = '+';					# no sign => '+'
       $self->{_n} = undef;
       $self->{_d} = undef;
-      if ($n =~ /^([+-]?)0*(\d+)\z/)				# first part ok?
+      if ($n =~ /^([+-]?)0*([0-9]+)\z/)				# first part ok?
 	{
 	$self->{sign} = $1 || '+';				# no sign => '+'
 	$self->{_n} = $MBI->_new($2 || 0);
         }
 
-      if ($d =~ /^([+-]?)0*(\d+)\z/)				# second part ok?
+      if ($d =~ /^([+-]?)0*([0-9]+)\z/)				# second part ok?
 	{
 	$self->{sign} =~ tr/+-/-+/ if ($1 || '') eq '-';	# negate if second part neg.
 	$self->{_d} = $MBI->_new($2 || 0);
@@ -290,7 +291,7 @@ sub new
   else
     {
     # for simple forms, use $MBI directly
-    if ($n =~ /^([+-]?)0*(\d+)\z/)
+    if ($n =~ /^([+-]?)0*([0-9]+)\z/)
       {
       $self->{sign} = $1 || '+';
       $self->{_n} = $MBI->_new($2 || 0);
@@ -1319,6 +1320,34 @@ sub as_oct
   }
 
 ##############################################################################
+
+sub from_hex
+  {
+  my $class = shift;
+
+  $class->new(@_);
+  }
+
+sub from_bin
+  {
+  my $class = shift;
+
+  $class->new(@_);
+  }
+
+sub from_oct
+  {
+  my $class = shift;
+
+  my @parts;
+  for my $c (@_)
+    {
+    push @parts, Math::BigInt->from_oct($c);
+    }
+  $class->new ( @parts );
+  }
+
+##############################################################################
 # import
 
 sub import
@@ -1446,7 +1475,7 @@ If you want the code to die instead, replace "try" with
 
 =head1 METHODS
 
-Any methods not listed here are dervied from Math::BigFloat (or
+Any methods not listed here are derived from Math::BigFloat (or
 Math::BigInt), so make sure you check these two modules for further
 information.
 
@@ -1505,17 +1534,12 @@ This routine is automatically used whenever a scalar is required:
 	@array = (1,2,3);
 	$y = $array[$x];		# set $y to 3
 
-=head2 as_int(), as_number()
+=head2 as_int()/as_number()
 
 	$x = Math::BigRat->new('13/7');
 	print $x->as_int(),"\n";		# '1'
 
 Returns a copy of the object as BigInt, truncated to an integer.
-
-=head2 as_number()
-
-	$x = Math::BigRat->new('13/7');
-	print $x->as_number(),"\n";		# '1'
 
 C<as_number()> is an alias for C<as_int()>.
 
@@ -1539,6 +1563,15 @@ Returns the BigRat as binary string. Works only for integers.
 	print $x->as_oct(),"\n";		# '015'
 
 Returns the BigRat as octal string. Works only for integers. 
+
+=head2 from_hex()/from_bin()/from_oct()
+
+	my $h = Math::BigRat->from_hex('0x10');
+	my $b = Math::BigRat->from_bin('0b10000000');
+	my $o = Math::BigRat->from_oct('020');
+
+Create a BigRat from an hexadecimal, binary or octal number
+in string form.
 
 =head2 length()
 
@@ -1606,7 +1639,7 @@ Return true if $x is exactly one, otherwise false.
 
 Return true if $x is exactly zero, otherwise false.
 
-=head2 is_pos(), is_positive()
+=head2 is_pos()/is_positive()
 
 	print "$x is >= 0\n" if $x->is_positive();
 
@@ -1615,7 +1648,7 @@ false. Please note that '+inf' is also positive, while 'NaN' and '-inf' aren't.
 
 C<is_positive()> is an alias for C<is_pos()>.
 
-=head2 is_neg(), is_negative()
+=head2 is_neg()/is_negative()
 
 	print "$x is < 0\n" if $x->is_negative();
 
@@ -1668,19 +1701,19 @@ Calculate the square root of $x.
 
 Calculate the N'th root of $x.
 
-=head2 badd(), bmul(), bsub(), bdiv(), bdec(), binc()
+=head2 badd()/bmul()/bsub()/bdiv()/bdec()/binc()
 
 Please see the documentation in L<Math::BigInt>.
 
 =head2 copy()
 
-	my $z = $x->bcopy();
+	my $z = $x->copy();
 
-Make a copy of the object.
+Makes a deep copy of the object.
 
 Please see the documentation in L<Math::BigInt> for further details.
 
-=head2 bstr(), bsstr()
+=head2 bstr()/bsstr()
 
 	my $x = Math::BigInt->new('8/4');
 	print $x->bstr(),"\n";			# prints 1/2
@@ -1688,13 +1721,13 @@ Please see the documentation in L<Math::BigInt> for further details.
 
 Return a string representating this object.
 
-=head2 bacmp(), bcmp()
+=head2 bacmp()/bcmp()
 
 Used to compare numbers.
 
 Please see the documentation in L<Math::BigInt> for further details.
 
-=head2 blsft(), brsft()
+=head2 blsft()/brsft()
 
 Used to shift numbers left/right.
 
@@ -1708,7 +1741,7 @@ Compute $x ** $y.
 
 Please see the documentation in L<Math::BigInt> for further details.
 
-=head2 config
+=head2 config()
 
         use Data::Dumper;
 
@@ -1740,7 +1773,7 @@ appropriate information.
                                 undef
         round_mode      RW      Global round mode
                                 even
-        div_scale       RW      Fallback acccuracy for div
+        div_scale       RW      Fallback accuracy for div
                                 40
         trap_nan        RW      Trap creation of NaN (undef = no)
                                 undef

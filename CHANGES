@@ -1,9 +1,12 @@
 
-Complete version history
-========================
+2007-02-03 v0.17 Tels 934 tests
+  * include the spelling fixes for bleadperl
+  * more typo and POD fixes
+  * include from_bin(), from_hex() and from_oct()
+  * add tests for octal and from_hex()/from_bin()
+  * bundle and use Module::Install
 
-############################################################################## 
-Math::BigRat:
+Older revision history:
 
 2001-11-21 v0.01 Tels
  * first release

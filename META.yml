@@ -1,13 +1,16 @@
----
-name: Math-BigRat
-author: Tels
-version: 0.16
-version_from: lib/Math/BigRat.pm
-license: perl
+abstract: Arbitrary big rational numbers
+author: Tels <nospam-abuse@bloodgate.com>
+build_requires: 
+  Test::More: 0.47
 distribution_type: module
-generated_by: Math-BigRat version 0.16
-installdirs: perl
-requires:
-  Math::BigFloat: 1.52
-  Math::BigInt: 1.78
-  Test::Simple: 0.47
+generated_by: Module::Install version 0.64
+license: gpl
+name: Math-BigRat
+no_index: 
+  directory: 
+    - inc
+    - t
+requires: 
+  Math::BigInt: 1.79
+  perl: 5.6.2
+version: 0.17
