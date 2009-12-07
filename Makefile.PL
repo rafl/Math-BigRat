@@ -32,8 +32,8 @@ WriteMakefile(
     'NAME'		=> 'Math-BigRat',
     'VERSION_FROM'	=> 'lib/Math/BigRat.pm', # finds $VERSION
     'PREREQ_PM'		=> {
-			   Math::BigInt => 1.74,
-			   Math::BigFloat => 1.48,
+			   Math::BigInt => 1.75,
+			   Math::BigFloat => 1.50,
 			   Test::Simple => 0.47,
 			   }, # e.g., Module::Name => 1.1
     'INSTALLDIRS'	=> 'perl',

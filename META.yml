@@ -1,12 +1,12 @@
 --- #YAML:1.0
 name: Math-BigRat
-version: 0.14
+version: 0.15
 version_from: lib/Math/BigRat.pm
 license: perl
 distribution_type: module
-generated_by: Math-BigRat version 0.14
+generated_by: Math-BigRat version 0.15
 installdirs: perl
 requires:
-  Math::BigFloat: 1.48
-  Math::BigInt: 1.74
+  Math::BigFloat: 1.5
+  Math::BigInt: 1.75
   Test::Simple: 0.47
