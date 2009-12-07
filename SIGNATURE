@@ -1,5 +1,5 @@
 This file contains message digests of all files listed in MANIFEST,
-signed via the Module::Signature module, version 0.42.
+signed via the Module::Signature module, version 0.54.
 
 To verify the content in this distribution, first make sure you have
 Module::Signature installed, then type:
@@ -12,18 +12,19 @@ the distribution may already have been compromised, and you should
 not run its Makefile.PL or Build.PL.
 
 -----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
 
 SHA1 21e6d61fb0134d6e9909c464cd5894083b1f32c7 BUGS
-SHA1 78ad2b2411c7d54adf29bc9bdfd101713939c61a CHANGES
+SHA1 1541f7152aaa3e6c45f08f082653cdd3989d12e7 CHANGES
 SHA1 45554f2da419f19f59014dab3489f34a45072279 INSTALL
 SHA1 d6a6c30ee6d9ba6b9afab8bbf6a25e1b23c744e0 LICENSE
-SHA1 c6fe5b7172237e24baaecc4615f1141aa8e1c00c MANIFEST
-SHA1 09962df7ae66715b3aac43c0fd582d7745a14c40 META.yml
-SHA1 0c004007310bbace10fa4fb2ae8050d932d73bc8 Makefile.PL
+SHA1 cd8b9cb9d93ec069f905b4ddddab5648d7497ff6 MANIFEST
+SHA1 d7f10814754349f2975534f98b21ba2f38ef4bea META.yml
+SHA1 d66d6535b7c979fc051c9148c1390881af48dbd6 Makefile.PL
 SHA1 ec7e05dbc84b3acc7aa671f735d189c4525846f5 NEW
 SHA1 e4ce2ac6577dd4f9c1bd869fe79b575f56afa578 README
 SHA1 e1690c1c103d9a76cf7e480566c9989183f84a1c TODO
-SHA1 fad37f3783a6a796fb0022d6a1b246f82f3a4c35 lib/Math/BigRat.pm
+SHA1 d168d4ee3ebd0f3fbf822627e6958a34047f3b63 lib/Math/BigRat.pm
 SHA1 10a4e077d8b5c267fdde22be32619d9d23bded3b t/Math/BigRat/Test.pm
 SHA1 aa8ee80ffa9174294604ac6246fdbe082738e9ac t/big_ap.t
 SHA1 ac4cf26e869179307a83ba76d40de40b0eeb0f4d t/bigfltpm.inc
@@ -32,16 +33,18 @@ SHA1 2cc6326101f48c3631cb6b28da3f6927391c2b0b t/bigrat.t
 SHA1 95b56d11e493aca96123854a02660b090f1399a5 t/bigratpm.inc
 SHA1 b60756f4b566888e55b34cf5e7b11a4f376e0854 t/bigratpm.t
 SHA1 3408180abd05091eafda8e46b8275ac3581d99ed t/bigratup.t
+SHA1 54e5fe75f1f5c0718e21b59c12a48ec6a0487256 t/pod.t
+SHA1 4409af0c7b0be33aa9bdea540d10f1e0d1ca22d3 t/pod_cov.t
 SHA1 f9ca8eb694e22414ce7571ad046bf92fca122306 t/requirer.t
 SHA1 ab00cdfe98f95fd5434e95fe8a86a013b3ad773f t/trap.t
 -----BEGIN PGP SIGNATURE-----
-Version: GnuPG v1.2.4 (GNU/Linux)
+Version: GnuPG v1.4.2 (GNU/Linux)
 
-iQEVAwUBQk+riXcLPEOTuEwVAQH6Cgf/VZJsAWV7J6iRSeXfgLNMWUoD9V8aJNkg
-SVgisl9QOsHTYVvMDnXeWV9C2r5eajkKXqESDHfIUbcW5bMVo/QUi9yWhARoSgni
-CIxOjLRMfSRbZTdrfTEgPqE+FffF3v5TUJBd5v7c24ZvXSe22X1xDU4pioMfs+N2
-wLcKhBkF5+tXsxcXUJBSt0EFhOxgRGZWC/hoQRQ2vReGdiwi89UpK0l6fe5lasS+
-IYgO/KKf3hx7u1lCwc6fCRrGYqkEPLbMLwF6JkxUybgld7tyMlEMNjPbCNLgmsjL
-6KLpW4dWLNcx1Wy/GdMuJEIB1avngfUQTLaowEOfNDeKJPVOKjbGUw==
-=7yPs
+iQEVAwUBRbyS9ncLPEOTuEwVAQI/hAf+NSitTsbhcBnKX8KiTjFiVhCH6q7TxNKk
+MxSNCG0OY8BETBy370omQe4lflvCNHdAObXhFHTUSFJ+Dn3TDJ5+trlAK1K4s8ab
+1FMCgrCiMhQHXKFkwwSocMlNPUfUWK88ZAwTx7Je7wnYXHWpm7WG5DG4ktEAB9eg
+5AlwnLJ7a08s2JRQ/wL+NQfp9GVHRpulAaiS7vfw4A31SFU/wvuoRopHVrf+atPt
+Rr+HLKYqEucnRF1H2JNCkSPvr9sZpGil3ZxfdSBEwKeFg7Oe/qi9E4FLP2DAhnOc
+LcXN+kali4Xngr849NguBBMR+bO8gfxOo2hP2B+N9Xiwqh/52cM5Hw==
+=JcAS
 -----END PGP SIGNATURE-----

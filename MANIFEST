@@ -16,6 +16,8 @@ t/bigfltpm.inc			# BigFloat's testsuite
 t/bigfltrt.t			# run BigRat through BigFloat's testsuite
 t/bigrat.t			# test big rationales like 7/5
 t/bigratup.t			# test under $Math::BigInt::upgrade
+t/pod.t				# test that the POD is wellformed
+t/pod_cov.t			# test that the POD covers all public functions
 t/requirer.t			# see if require works properly
 t/trap.t			# see if trap_nan and trap_inf work
 t/Math/BigRat/Test.pm		# test class for BigFloat compatible output

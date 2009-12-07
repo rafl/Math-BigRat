@@ -165,6 +165,10 @@ Math::BigRat:
  * fix import()'s handling of the lib argument (it didn't work)
  * fix segfault under trap_nan in _bnan()
  * remove unused IMPORT logic (require BigRat seems to work without it)
+2007-01-28 v0.16 Tels 926 tests
+ * require Math::BigInt 1.78
+ * add support for 'try' and 'only'
+ * add pod tests
 
 Please send me test-reports, your experiences with this and your ideas - I love
 to hear about my work!
