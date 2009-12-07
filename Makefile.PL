@@ -11,7 +11,7 @@ name		'Math-BigRat';
 all_from	'lib/Math/BigRat.pm';
 
 requires	'perl'		=> "5.006002";
-requires	'Math::BigInt'	=> 1.79;
+requires	'Math::BigInt'	=> 1.82;
 
 build_requires	'Test::More'	=> 0.47;
 
@@ -20,10 +20,7 @@ license		'gpl';
 author		'Tels <nospam-abuse@bloodgate.com>';
 
 # install this over the version in the Perl core
-makemaker_args INSTALLDIRS => 'perl';
-
-# We cannot work without our prerequisites
-makemaker_args PREREQ_FATAL => 1;
+install_as_core;
 
 # Generate the Makefile
 WriteAll;

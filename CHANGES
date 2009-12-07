@@ -1,4 +1,9 @@
 
+2007-04-09 v0.18 Tels 934 tests
+  * install_as_core() to work around Module::Install bug
+  * remove PREREQ_FATAL since the toolchain is broken
+  * require Math::BigInt v1.82
+
 2007-02-03 v0.17 Tels 934 tests
   * include the spelling fixes for bleadperl
   * more typo and POD fixes
