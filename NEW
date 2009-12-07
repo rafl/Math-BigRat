@@ -1,12 +1,26 @@
+Please send me test-reports, your experiences with this and your ideas - I love
+to hear about my work!
+
+Tels <http://bloodgate.com/>
 
 Whats new in this version:
 
-* bcmp/bacmp/as_number/bfloor/bceil work now
-* bsqrt() is better now
-* t/Math/BigInt/Test.pm is fixed now and makes a much better figure
-  (formerly almost all of the 1500 tests in bigfltrt.inc would fail. Now we
-  fail "only" 868 of 2014 tests, and most of them since the test dies early.
-* added stubs for round, bfround, bround and certain others
+ * bfac() now works for integers (x/1), and returns $x->bnan() instead of
+   Math::BigRat->bnan() (modify in-place)
+ * bpow() faster for x/1 ** y/1 and x/z ** y/1 cases (some of the speedups are
+   two-digit factors :)
+ * bpow() no longer litters stdout
+ * removed some (all of them commented out) debug prints to reduce footprint
+ * shortened testfile bigrat.t
+ * some hardcoded 'Math::BigInt' replaced with '$MBI'
+ * bceil() would leave -0 in some cases
+ * (more) tests: bceil/bfloor/bpow/bfac/parts/denominator/nominator/binc/bdec
+ * parts('-3/1') would return (3,1) instead of (-3,1)
+ * parts() did not work for NaN, +inf, -inf
+ * numerator()/denominator() did not work for inf,-inf,NaN
+ * new('1.2.2') was valid (resulted in 12/10 due to bug in BigFloat)
+ * new() for some cases left internal state not as 0/0 for NaN, inf, -inf etc
+ * binc()/bdec() were missing entirely
 
 Please have arbitrarily big amounts of fun.
 

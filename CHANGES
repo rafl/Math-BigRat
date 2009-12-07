@@ -23,7 +23,7 @@ Math::BigRat:
  * _d/_n were accidentily swapped
  * added numerator()/denominator()/parts() and doc and tests
  * fixed is_one()
- # '1/ ' is as invalid as '1/'
+ * '1/ ' is as invalid as '1/'
  * badd/bsub/bmul: inf/NaN handling was wrong due to copy&paste (ha!) from bdiv
  * more extensive testsuite (about 400 tests)
  * bnorm() normalizes 0/x to 0/1
@@ -44,7 +44,7 @@ Math::BigRat:
 2002-03-26 v0.05 Tels
  * various bugfixes
    (local undef upgrade, Bigint handling, handling of string arguments)
- * added isa()
+ * fixed up isa()
  * removed some old and wrong comments
 2002-05-23 v0.06 Tels
  * added import() routine
@@ -54,6 +54,24 @@ Math::BigRat:
  * more documentation
  * bugfix in new() with two arguments
  * INSTALLDIRS => perl
+2002-06-04 v0.07 Tels
+ * bfac() now works for integers (x/1), and returns $x->bnan() instead of
+   Math::BigRat->bnan() (modify in-place)
+ * bpow() faster for x/1 ** y/1 and x/z ** y/1 cases (some of the speedups are
+   two-digit factors :) - also some bugfixes
+ * bpow() no longer litters stdout
+ * removed some (all of them commented out) debug prints to reduce footprint
+ * shortened testfile bigrat.t
+ * some hardcoded 'Math::BigInt' replaced with '$MBI'
+ * bceil() would leave -0 in some cases
+ * (more) tests (all in all 628) for:
+   bceil/bfloor/bpow/bfac/parts/denominator/nominator/binc/bdec
+ * parts('-3/1') would return (3,1) instead of (-3,1)
+ * parts() did not work for NaN, +inf, -inf
+ * numerator()/denominator() did not work for inf,-inf,NaN
+ * new('1.2.2') was valid (resulted in 12/10 due to bug in BigFloat)
+ * new() for some cases left internal state not as 0/0 for NaN, inf, -inf etc
+ * binc()/bdec() were missing entirely
 
 Please send me test-reports, your experiences with this and your ideas - I love
 to hear about my work!
