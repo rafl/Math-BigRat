@@ -2,9 +2,8 @@ See also various .pm files.
 
 * rounding needs a new definiton: rounding to nearest fraction (see Knuth and
 fixed-slash fractions)
-* numerical comparing is not done yet
 
-Too much needs still to be done.
+Quite some stuff needs still to be done.
 
 Please send me test-reports, your experiences with this and your ideas - I love
 to hear about my work!

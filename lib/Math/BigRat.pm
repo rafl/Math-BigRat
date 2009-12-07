@@ -1,6 +1,6 @@
 
 #
-# "Tax the rat farms."
+# "Tax the rat farms." - Lord Vetinari
 #
 
 # The following hash values are used:
@@ -24,7 +24,7 @@ use vars qw($VERSION @ISA $PACKAGE @EXPORT_OK $upgrade $downgrade
 @ISA = qw(Exporter Math::BigFloat);
 @EXPORT_OK = qw();
 
-$VERSION = '0.07';
+$VERSION = '0.08';
 
 use overload;				# inherit from Math::BigFloat
 
@@ -203,7 +203,7 @@ sub bsstr
     }
   
   my $s = ''; $s = $x->{sign} if $x->{sign} ne '+';	# +3 vs 3
-  return $x->{_n}->bstr() . '/' . $x->{_d}->bstr(); 
+  return $s . $x->{_n}->bstr() . '/' . $x->{_d}->bstr(); 
   }
 
 sub bnorm
@@ -811,6 +811,19 @@ sub bacmp
 
 ##############################################################################
 # output conversation
+
+sub numify
+  {
+  # convert 17/8 => float (aka 2.125)
+  my ($self,$x) = ref($_[0]) ? (ref($_[0]),$_[0]) : objectify(1,@_);
+ 
+  return $x->bstr() if $x->{sign} !~ /^[+-]$/;	# inf, NaN, etc
+
+  my $t = Math::BigFloat->new($x->{_n});
+  $t->bneg() if $x->is_negative();
+  $t->bdiv($x->{_d});
+  $t->numify();  
+  }
 
 sub as_number
   {

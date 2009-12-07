@@ -8,7 +8,7 @@ BEGIN
   $| = 1;
   chdir 't' if -d 't';
   unshift @INC, '../lib'; # for running manually
-  plan tests => 136;
+  plan tests => 148;
   }
 
 # testing of Math::BigRat
@@ -188,6 +188,28 @@ $x =  $cr->new('15/6'); ok ($x->bdec(),'3/2');
 
 $x = $cr->new('-7/7'); ok ($x->{_n}, '1'); ok ($x->{_d}, '1');
 $x = $cr->new('-7/7')->bfloor(); ok ($x->{_n}, '1'); ok ($x->{_d}, '1');
+
+##############################################################################
+# bsstr
+
+$x = $cr->new('7/5')->bsstr(); ok ($x,'7/5');
+$x = $cr->new('-7/5')->bsstr(); ok ($x,'-7/5');
+
+##############################################################################
+# numify()
+
+my @array = qw/1 2 3 4 5 6 7 8 9/;
+$x = $cr->new('8/8'); ok ($array[$x],2);
+$x = $cr->new('16/8'); ok ($array[$x],3);
+$x = $cr->new('17/8'); ok ($array[$x],3);
+$x = $cr->new('33/8'); ok ($array[$x],5);
+$x = $cr->new('-33/8'); ok ($array[$x],6);
+
+$x = $cr->new('33/8'); ok ($x->numify() * 1000, 4125);
+$x = $cr->new('-33/8'); ok ($x->numify() * 1000, -4125);
+$x = $cr->new('inf'); ok ($x->numify(), 'inf');
+$x = $cr->new('-inf'); ok ($x->numify(), '-inf');
+$x = $cr->new('NaN'); ok ($x->numify(), 'NaN');
 
 ##############################################################################
 # done

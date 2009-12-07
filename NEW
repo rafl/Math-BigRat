@@ -3,24 +3,10 @@ to hear about my work!
 
 Tels <http://bloodgate.com/>
 
-Whats new in this version:
+What's new in this version:
 
- * bfac() now works for integers (x/1), and returns $x->bnan() instead of
-   Math::BigRat->bnan() (modify in-place)
- * bpow() faster for x/1 ** y/1 and x/z ** y/1 cases (some of the speedups are
-   two-digit factors :)
- * bpow() no longer litters stdout
- * removed some (all of them commented out) debug prints to reduce footprint
- * shortened testfile bigrat.t
- * some hardcoded 'Math::BigInt' replaced with '$MBI'
- * bceil() would leave -0 in some cases
- * (more) tests: bceil/bfloor/bpow/bfac/parts/denominator/nominator/binc/bdec
- * parts('-3/1') would return (3,1) instead of (-3,1)
- * parts() did not work for NaN, +inf, -inf
- * numerator()/denominator() did not work for inf,-inf,NaN
- * new('1.2.2') was valid (resulted in 12/10 due to bug in BigFloat)
- * new() for some cases left internal state not as 0/0 for NaN, inf, -inf etc
- * binc()/bdec() were missing entirely
+ * fixed bug in bsstr() which always returned positive sign
+ * added a numify method so that $array[Math::BigRat->new('17/8')] works now
 
 Please have arbitrarily big amounts of fun.
 
