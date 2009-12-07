@@ -135,6 +135,18 @@ Math::BigRat:
  * fixed blsft()/brsft() to work with undefined or scalar base
  * added a copy() method to be independend from BigInt's copy()
  * adopted to new internal format of Math::BigFloat v1.44 (from BigInt v1.70)
+2004-10-22 v0.13 Tels 892 tests
+ * fixed digit(): it never worked due to dropping the second parameter
+ * fixed a bug in brsft() when passing arguments (2 vs. 3 in objectify)
+ * use Math::BigInt->config('lib') for parts instead of Math::BigInt
+   + This makes everything go about 2..4 times faster :)
+   + And it saves memory (408 vs. 807 bytes for a simple number)
+ * _as_float() is about 6 times as fast for integers (e.g. 123/1 vs. 2/3)
+ * denominator() returns 1 for +inf and -inf (+inf/1, -inf/1) instead of +-inf
+ * when using "lib => GMP;", certain things never worked:
+   + sqrt() was not possible
+   + new("2.3") did not work
+   + new("12.3e-2") did not work
 
 Please send me test-reports, your experiences with this and your ideas - I love
 to hear about my work!

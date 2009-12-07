@@ -1,7 +1,4 @@
 
-* The internal parts of BigRat could be $CALC objects, as opposed to $MBI
-  (just like Math::BigFloat does). This would save some memory per object
-   and also make everything go faster due to reduced overhead)
 * rounding needs a new definiton: rounding to nearest fraction (see Knuth
   and fixed-slash fractions)
 * bmod(), bmodpow(), bmodinv(), broot() not fully/properly implemented yet
