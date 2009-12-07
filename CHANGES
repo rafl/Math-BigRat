@@ -1,4 +1,8 @@
 
+2007-06-30 v0.20 Tels 956 tests
+  * require Math::BigInt v1.87
+  * add bnok() and bexp()
+
 2007-04-17 v0.19 Tels 934 tests
   * fix the check in bnorm() as it breaks under Pari
   * require Math::BigInt v1.83

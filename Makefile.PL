@@ -11,7 +11,7 @@ name		'Math-BigRat';
 all_from	'lib/Math/BigRat.pm';
 
 requires	'perl'		=> "5.006002";
-requires	'Math::BigInt'	=> 1.83;
+requires	'Math::BigInt'	=> 1.87;
 
 build_requires	'Test::More'	=> 0.47;
 
